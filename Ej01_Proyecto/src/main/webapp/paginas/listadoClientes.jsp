@@ -14,7 +14,7 @@
 	-->
 	
 	<!-- O tener nuestros los recursos alojados en nuestro servidor -->
-	<link rel="stylesheet" href="recursos/css/bootstrap.min.css">
+	<link rel="stylesheet" href="../recursos/css/bootstrap.min.css">
 	
 </head>
 <body>
@@ -45,7 +45,9 @@
 	</div>
 	
 	<div class="text-center mt-4 mb-4">
-		<button class="btn btn-primary">Nuevo</button> 
+		<form method="get" action="formularioClientes">
+			<input type="submit" class="btn btn-primary" value="Nuevo"/> 
+		</form>
 	</div>
 	
 	
