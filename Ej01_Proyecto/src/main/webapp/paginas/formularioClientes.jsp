@@ -17,6 +17,27 @@
 	<link rel="stylesheet" href="../recursos/css/bootstrap.min.css">
 	
 </head>
+
+<script type="application/javascript">
+
+function vaciarFormulario(){
+	document.getElementById("nombre").value=""
+	document.getElementById("direccion").value=""
+	document.getElementById("telefono").value=""
+	document.getElementById("correoE").value=""
+	document.getElementById("activo").value=""
+	document.getElementById("notas").value=""	
+}
+
+function enviarPeticion(metodo, action){
+	let formulario = document.getElementById("formulario")
+	formulario.method = metodo;
+	formulario.action = action;
+}
+
+</script>
+
+
 <body>
 
 	<div class="text-center page-header">
@@ -44,14 +65,14 @@
 		<h2>Formulario de clientes</h2>
 	</div>
 	
-	<form method="GET" action="listadoClientes">
+	<form id="formulario">
 	
 		<div class="text-center mt-4 mb-4">
-			<button class="btn btn-primary">Insertar</button> 
-			<button class="btn btn-primary">Modificar</button> 
-			<button class="btn btn-danger">Borrar</button> 
-			<button class="btn btn-warning">Vaciar</button> 
-			<input type="submit" class="btn btn-warning" value="Cancelar"/> 
+			<input type="submit" class="btn btn-primary" value="Insertar"  onclick="enviarPeticion('POST','insertarCliente')"/> 
+			<input type="submit" class="btn btn-primary" value="Modificar" onclick="enviarPeticion('POST','modificarCliente')"/> 
+			<input type="submit" class="btn btn-danger"  value="Borrar"    onclick="enviarPeticion('POST','borrarCliente')"/> 
+			<input type="button" class="btn btn-warning" value="Vaciar"    onclick="vaciarFormulario()"/> 
+			<input type="submit" class="btn btn-warning" value="Cancelar"  onclick="enviarPeticion('GET','listadoClientes')"/> 
 		</div>
 			
 		<div class="row">
