@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
+<%@taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
+	
 <!DOCTYPE html>
 <html>
 <head>
@@ -37,7 +39,6 @@ function enviarPeticion(metodo, action){
 
 </script>
 
-
 <body>
 
 	<div class="text-center page-header">
@@ -65,7 +66,7 @@ function enviarPeticion(metodo, action){
 		<h2>Formulario de clientes</h2>
 	</div>
 	
-	<form id="formulario">
+	<form:form id="formulario" modelAttribute="cliente">
 	
 		<div class="text-center mt-4 mb-4">
 			<input type="submit" class="btn btn-primary" value="Insertar"  onclick="enviarPeticion('POST','insertarCliente')"/> 
@@ -83,48 +84,49 @@ function enviarPeticion(metodo, action){
 				        <label for="nombre">Nombre</label>
 				    </div>
 				    <div class="col-sm-12 col-md-10 mt-1">
-				        <input id="nombre" class="form-control"/>
+				        <form:input path="nombre" id="nombre" class="form-control"/>
 				    </div>
 				    
 				    <div class="col-sm-12 col-md-2 mt-1">
 				        <label for="direccion">Dirección</label>
 				    </div>
 				    <div class="col-sm-12 col-md-10 mt-1">
-				        <input id="direccion" class="form-control"/>
+				    	<form:input path="direccion" id="direccion" class="form-control"/>
 				    </div>                 
 				    
 				    <div class="col-sm-12 col-md-2 mt-1">
 				        <label for="telefono">Teléfono</label>
 				    </div>
 				    <div class="col-sm-12 col-md-10 mt-1">
-				        <input id="telefono" class="form-control"/>
+				    	<form:input path="telefono" id="telefono" class="form-control"/>
 				    </div>
 				    
 				    <div class="col-sm-12 col-md-2 mt-1">
 				        <label for="correoE">Correo E.</label>
 				    </div>
 				    <div class="col-sm-12 col-md-10 mt-1">
-				        <input id="correoE" class="form-control"/>
+				    	<form:input path="correoE" id="correoE" class="form-control"/>
 				    </div>
 	
 				    <div class="col-sm-12 col-md-2 mt-1">
 				        <label for="activo">Activo</label>
 				    </div>
 				    <div class="col-sm-12 col-md-10 mt-1">
-				        <input id="activo" class="form-control"/>
+				    	<form:checkbox path="activo" id="activo" class="form-control"/>
 				    </div>
 				
 				    <div class="col-sm-12 col-md-2 mt-1">
 				        <label for="notas">Notas</label>
 				    </div>
 				    <div class="col-sm-12 col-md-10 mt-1">
-				        <textarea id="notas" class="form-control"></textarea>
+				        <form:textarea path="notas" id="notas" class="form-control"/>
 				    </div>
 				</div>    
 		        
 		    </div>
 		</div>	
-	</form>
+		
+	</form:form>
 
 </body>
 </html>

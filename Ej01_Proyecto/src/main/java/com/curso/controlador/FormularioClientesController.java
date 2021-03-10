@@ -2,8 +2,11 @@ package com.curso.controlador;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.ModelAndView;
+
+import com.curso.modelo.entidad.Cliente;
 
 //Spring creará una instancia de esta clase
 //La llamará (si no indicamos lo contrario) 'clientesController'
@@ -21,13 +24,15 @@ public class FormularioClientesController {
 	public ModelAndView verFormularioClientes() {
 		System.out.println("FormularioClientesController.verFormularioClientes");
 		ModelAndView mav = new ModelAndView("formularioClientes");
+		mav.addObject("cliente", new Cliente());		
 		return mav;
 	}
 
 	@PostMapping("/insertarCliente")
-	public ModelAndView insertarCliente(/*****/) {
-		System.out.println("FormularioClientesController.insertarCliente");
+	public ModelAndView insertarCliente(@ModelAttribute Cliente cliente) {
+		System.out.println("FormularioClientesController.insertarCliente:"+cliente);
 		ModelAndView mav = new ModelAndView("listadoClientes");
+	
 		return mav;
 	}
 	

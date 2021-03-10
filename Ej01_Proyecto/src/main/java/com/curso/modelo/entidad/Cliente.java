@@ -1,20 +1,38 @@
 package com.curso.modelo.entidad;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+//Obligatoria
+@Entity
+//Opcional. Si no se indica se usa el nombre de la clase como nombre de la tabla
+@Table(name = "cliente")
 public class Cliente {
 
+	//Obligatoria
+	@Id
+	//Opcional
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
 
 	private String nombre;
 	private String direccion;
 	private String telefono;
+	@Column(name="correo_e")
 	private String correoE;
 	private Boolean activo;
-
+	private String notas;
+	
 	public Cliente() {
 		super();
 	}
 
-	public Cliente(Integer id, String nombre, String direccion, String telefono, String correoE, Boolean activo) {
+	public Cliente(Integer id, String nombre, String direccion, String telefono, String correoE, Boolean activo,
+			String notas) {
 		super();
 		this.id = id;
 		this.nombre = nombre;
@@ -22,6 +40,7 @@ public class Cliente {
 		this.telefono = telefono;
 		this.correoE = correoE;
 		this.activo = activo;
+		this.notas = notas;
 	}
 
 	public Integer getId() {
@@ -72,10 +91,18 @@ public class Cliente {
 		this.activo = activo;
 	}
 
+	public String getNotas() {
+		return notas;
+	}
+
+	public void setNotas(String notas) {
+		this.notas = notas;
+	}
+
 	@Override
 	public String toString() {
 		return "Cliente [id=" + id + ", nombre=" + nombre + ", direccion=" + direccion + ", telefono=" + telefono
-				+ ", correoE=" + correoE + ", activo=" + activo + "]";
+				+ ", correoE=" + correoE + ", activo=" + activo + ", notas=" + notas + "]";
 	}
-
+	
 }
