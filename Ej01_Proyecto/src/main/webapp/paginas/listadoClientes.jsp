@@ -1,5 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
+<%@taglib uri="http://java.sun.com/jsp/jstl/core"        prefix="c"%>	
+<%@taglib uri="http://www.springframework.org/tags/form" prefix="form"%>	
+	
 <!DOCTYPE html>
 <html>
 <head>
@@ -48,8 +51,7 @@
 		<form method="get" action="formularioClientes">
 			<input type="submit" class="btn btn-primary" value="Nuevo"/> 
 		</form>
-	</div>
-	
+	</div>	
 	
 	<div class="row">
 	    <div class="col-sm-12 offset-sm-0 col-md-8 offset-md-2">
@@ -65,8 +67,17 @@
 			        </tr>
 			    </thead>
 			    <tbody>
+					<c:forEach items="${listaClientes}" var="cli">
+						<tr>
+							<td>${cli.nombre}</td>
+							<td>${cli.direccion}</td>
+							<td>${cli.telefono}</td>
+							<td>${cli.correoE}</td>
+							<td>${cli.activo}</td>						
+						</tr>					
+					</c:forEach>			    
 			    </tbody>
-			</table>  	
+			</table> 
 	        
 	    </div>
 	</div>	
