@@ -69,7 +69,12 @@
 			    <tbody>
 					<c:forEach items="${listaClientes}" var="cli">
 						<tr>
-							<td>${cli.nombre}</td>
+							<td>
+								<c:url var="url" value="seleccionarCliente">
+									<c:param name="idCliente" value="${cli.id}"/>
+								</c:url>					
+								<a href="${url}">${cli.nombre}</a>							
+							</td>
 							<td>${cli.direccion}</td>
 							<td>${cli.telefono}</td>
 							<td>${cli.correoE}</td>

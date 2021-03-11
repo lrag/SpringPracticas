@@ -23,6 +23,7 @@
 <script type="application/javascript">
 
 function vaciarFormulario(){
+	document.getElementById("idCliente").value=""
 	document.getElementById("nombre").value=""
 	document.getElementById("direccion").value=""
 	document.getElementById("telefono").value=""
@@ -75,6 +76,8 @@ function enviarPeticion(metodo, action){
 			<input type="button" class="btn btn-warning" value="Vaciar"    onclick="vaciarFormulario()"/> 
 			<input type="submit" class="btn btn-warning" value="Cancelar"  onclick="enviarPeticion('GET','listadoClientes')"/> 
 		</div>
+		
+		<form:hidden path="id" id="idCliente"/>
 			
 		<div class="row">
 		    <div class="col-sm-12 offset-sm-0 col-md-8 offset-md-2">

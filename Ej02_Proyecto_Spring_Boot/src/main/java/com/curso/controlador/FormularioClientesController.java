@@ -1,14 +1,18 @@
 package com.curso.controlador;
 
+import java.util.Optional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.curso.modelo.entidad.Cliente;
 import com.curso.modelo.negocio.GestorClientes;
+import com.curso.modelo.persistencia.RepositorioClientes;
 
 //Spring creará una instancia de esta clase
 //La llamará (si no indicamos lo contrario) 'clientesController'
@@ -18,6 +22,9 @@ public class FormularioClientesController {
 	
 	@Autowired
 	private GestorClientes gestorClientes;
+	
+	@Autowired
+	private RepositorioClientes repositorioClientes;
 
 	public FormularioClientesController() {
 		super();
@@ -32,6 +39,30 @@ public class FormularioClientesController {
 		mav.addObject("cliente", new Cliente());		
 		return mav;
 	}
+	
+	@GetMapping("/seleccionarCliente")
+	public ModelAndView seleccionarCliente(@RequestParam("idCliente") Integer idCliente) {
+		
+		System.out.println("Seleccionar cliente:"+idCliente);
+		
+		/*
+		Optional<Cliente> opC = repositorioClientes.findById(idCliente);
+		Cliente c = null;
+		if(opC.isPresent()) {
+			c = opC.get();
+		} else {
+			c = new Cliente();
+		}
+		*/
+		
+		Cliente c = repositorioClientes.findById(idCliente).orElse(new Cliente());
+		
+		ModelAndView mav = new ModelAndView("formularioClientes");
+		mav.addObject("cliente", c);
+		return mav;
+	}
+	
+	
 
 	@PostMapping("/insertarCliente")
 	public ModelAndView insertarCliente(@ModelAttribute Cliente cliente) {
@@ -39,23 +70,29 @@ public class FormularioClientesController {
 		
 		//llamada a la logica de negocio
 		gestorClientes.insertar(cliente);
-		
-		ModelAndView mav = new ModelAndView("listadoClientes");
-	
+
+		//POST-REDIRECT-GET
+		ModelAndView mav = new ModelAndView("redirect:listadoClientes");
 		return mav;
 	}
 	
 	@PostMapping("/modificarCliente")
-	public ModelAndView modificarCliente() {
+	public ModelAndView modificarCliente(@ModelAttribute Cliente cliente) {
 		System.out.println("FormularioClientesController.modificarCliente");
-		ModelAndView mav = new ModelAndView("listadoClientes");
+
+		gestorClientes.modificar(cliente);
+		
+		ModelAndView mav = new ModelAndView("redirect:listadoClientes");
 		return mav;
 	}
 	
 	@PostMapping("/borrarCliente")
-	public ModelAndView borrarCliente() {
+	public ModelAndView borrarCliente(@ModelAttribute Cliente cliente) {
 		System.out.println("FormularioClientesController.borrarCliente");
-		ModelAndView mav = new ModelAndView("listadoClientes");
+
+		gestorClientes.borrar(cliente);
+		
+		ModelAndView mav = new ModelAndView("redirect:listadoClientes");
 		return mav;
 	}
 	
