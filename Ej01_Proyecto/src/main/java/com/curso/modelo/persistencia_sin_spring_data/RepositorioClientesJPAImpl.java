@@ -1,4 +1,4 @@
-package com.curso.modelo.persistencia;
+package com.curso.modelo.persistencia_sin_spring_data;
 
 import java.util.List;
 import javax.persistence.EntityManager;
@@ -8,8 +8,8 @@ import javax.persistence.Query;
 import org.springframework.stereotype.Repository;
 import com.curso.modelo.entidad.Cliente;
 
-@Repository
-public class RepositorioClientesJPAImpl implements RepositorioClientes{
+//@Repository
+public class RepositorioClientesJPAImpl implements RepositorioClientes_{
 	
 	//Análogo a autowired, específico para inyectar entity managers
 	@PersistenceContext
